@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing : border-box;
+}
+
+body {
+    overflow: hidden;
+}
+
+.scroll-container{
+    height:100vh;
+    position: relative;
+}
+.item{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    transition: 1s ease-in-out
+}
+.item img{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    object-fit: cover;
+    transition: 1s;
+}
+.item.prev, .item.next{
+    z-index: 1;
+    height: 0;
+}
+.item.next{
+    bottom: 0;
+}
+.item.next img{
+    bottom: 0;
+}
+.scroll-up .item.next img{
+    transform: translateY(0);
+}
+.scroll-up .item.cur img{
+    transform: translateY(10%);
+}
+.scroll-up .item.prev{
+    height: 100%;
+}
+.scroll-down .item.next{
+    height: 100%;
+}
+.scroll-down .item.next img{
+    transform: translateY(0);
+}
+.scroll-down .item.cur img{
+    transform: translateY(-10%);
+}

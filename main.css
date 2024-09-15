@@ -1,0 +1,119 @@
+/* General styles for all elements */
+* {
+    background-color: #ffffff;
+    margin: 0;
+}
+
+/* Styles for the body element */
+body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Styles for the cover div */
+.cover {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to right, rgb(0, 136, 255), rgb(94, 5, 247));
+    opacity: 0.7;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0; /* Ensure it is behind other elements */
+}
+
+/* Styles for the left block */
+.left_block {
+    margin: 0;
+    width: fit-content;
+    height: fit-content;
+    padding: 10px;
+    border: 10px solid black;
+    background-color: aquamarine;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+/* Inherits background color for h1 and p tags inside the left block */
+.left_block h1,
+.left_block p {
+    background-color: inherit;
+}
+
+/* Removes default margin and padding for p tags inside the left block */
+.left_block p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Styles for the dropdown menu */
+.dropdownMenu {
+    position: fixed; /* Stays fixed on the screen even when you scroll */
+    display: flex;
+    background-color: #F9F7F0;
+    align-items: center;
+    position: relative;
+    z-index: 9999; /* Ensure it is above the cover element */
+    width: 100vw;
+}
+
+/* Styles for the home button in the dropdown menu */
+.dropdownMenu .homeButton {
+    padding: 10px 15px;
+    background-color: #F9F7F0;
+}
+
+/* Styles for the anchor tag inside the home button */
+.homeButton a {
+    text-decoration: none;
+    background-color: #F9F7F0;
+    border: none;
+}
+
+/* Styles for the home button on hover */
+.homeButton:hover {
+    background-color: #ffeba3;
+    border: none;
+}
+
+/* Styles for the dropdown button */
+.dropdownButton {
+    padding: 10px 15px;
+    background-color: #F9F7F0;
+    border: none;
+}
+
+/* Styles for the dropdown button on hover */
+.dropdownButton:hover {
+    padding: 10px 15px;
+    background-color: #ffeba3;
+    border: none;
+}
+
+/* Styles for the content div inside the dropdown button div */
+.dropdownButtondiv .content {
+    display: none;
+    min-width: 50px;
+    position: absolute;
+    background-color: #8becff;
+    box-shadow: 3px 3px 6px #61a6d2;
+}
+
+/* Styles for the content div when the dropdown button div is hovered */
+.dropdownButtondiv:hover .content {
+    display: block;
+    /* margin:10px; */
+}
+
+/* Styles for anchor tags inside the content div */
+.dropdownButtondiv a {
+    padding: 5px 15px;
+    text-decoration: none;
+    display: block;
+}
+
+
+/* Styles for anchor tags inside the content div on hover */
+.dropdownButtondiv a:hover {
+    background-color: #aee0ff;
+}
