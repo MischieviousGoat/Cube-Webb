@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cube-Webb</title>
-    <link rel="stylesheet" href="main.css"> 
-    <link rel="stylesheet" href="shichagundong.css"> 
+    <title>Cube-Webb - Timer</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="timerStyles.css">
 </head>
-<body>
+<body onload="generateScramble()">  
     <header>
         <div class="dropdownMenu">
             <div class="homeButton">
@@ -40,17 +41,17 @@
         </div>
     </header>
 
-    <!-- <div class="cover"></div> -->
-    <div id="scrollContainer" class="scroll-container"></div>
-    <!-- <div class="left_block">
-        <h1 class="left_hi">Hi!</h1>
-        <p class="left_paragraph">hwguwriskbrthiuiogzjkwabhjhsukjgrwnajbhzfskvlngfmrbe fhjvknfgraebhfvk</p>
-    </div> -->
+    <div id="container">
+        <div id="scrambleDisplay">scramble</div>
+        <div id="timerDisplay">0.00</div>
+    </div>
+    <div id="stats">
+        <div id="times"></div>
+    </div>
 
     <footer>
         <p>2024 ; Jacky_Duxy, MischieviousGoat</p>
     </footer>
-
-    <script src="main.js"></script>
+    <script src="timerIndex.js"></script>
 </body>
 </html>

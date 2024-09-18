@@ -1,14 +1,14 @@
 /* General styles for all elements */
-* {
-    background-color: #ffffff;
+header {
+    background-color: rgb(25, 40, 65);
     margin: 0;
 }
 
 /* Styles for the body element */
-body {
+/* body {
     height: 100%;
     margin: 0;
-}
+} */
 
 /* Styles for the cover div */
 .cover {
@@ -50,24 +50,28 @@ body {
 .dropdownMenu {
     position: fixed; /* Stays fixed on the screen even when you scroll */
     display: flex;
-    background-color: #F9F7F0;
+    background-color: rgb(25, 40, 65);
     align-items: center;
     position: relative;
     z-index: 9999; /* Ensure it is above the cover element */
-    width: 100vw;
+    width: vw;
 }
 
 /* Styles for the home button in the dropdown menu */
 .dropdownMenu .homeButton {
     padding: 10px 15px;
-    background-color: #F9F7F0;
+    background-color: rgb(25, 40, 65);
+    font-size: 20px;
 }
 
 /* Styles for the anchor tag inside the home button */
 .homeButton a {
     text-decoration: none;
-    background-color: #F9F7F0;
+    background-color: rgb(25, 40, 65);
     border: none;
+    font-family: monospace;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
 }
 
 /* Styles for the home button on hover */
@@ -79,8 +83,12 @@ body {
 /* Styles for the dropdown button */
 .dropdownButton {
     padding: 10px 15px;
-    background-color: #F9F7F0;
+    background-color: rgb(25, 40, 65);
     border: none;
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
 }
 
 /* Styles for the dropdown button on hover */
@@ -110,6 +118,10 @@ body {
     padding: 5px 15px;
     text-decoration: none;
     display: block;
+    font-size: 15px;
+    font-family: monospace;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
 }
 
 

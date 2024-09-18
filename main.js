@@ -1,11 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
     const imgs = [
-        "/Users/jackyduxy/Desktop/Code/Personal Website/110815596_p0_master1200.jpg",
-        "/Users/jackyduxy/Desktop/Code/Personal Website/20231223172717.png",
-        "/Users/jackyduxy/Desktop/Code/Personal Website/IMG_5310.jpeg",
-        "/Users/jackyduxy/Desktop/Code/Personal Website/IMG_5344.jpeg",
-        "/Users/jackyduxy/Desktop/Code/Personal Website/IMG_5519.jpeg",
-        "/Users/jackyduxy/Desktop/Code/Personal Website/IMG_5751.jpeg",
+        "/110815596_p0_master1200.jpg",
+        "/20231223172717.png",
+        "/IMG_5310.jpeg",
+        "/IMG_5344.jpeg",
+        "/IMG_5519.jpeg",
+        "/IMG_5751.jpeg",
     ];
 
     const scrollContainer = document.querySelector('#scrollContainer'); // Use '#' for ID selector
