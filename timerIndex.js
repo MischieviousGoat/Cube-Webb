@@ -5,9 +5,7 @@ class Solve {
         this.isDNF = isDNF;
         this.scramble = scramble;
 
-        if (isDNF) {
-            this.time = "DNF";
-        } else if (isPlus2) {
+        if (isPlus2) {
             this.time = Number(time) + 2;
         } else {
             this.time = time;
@@ -65,26 +63,6 @@ let timeHeld = 0;
 // Time since timer has stopped
 let timeSinceStop = 0;
 
-// Changes timer mode
-// function toggleTimer() {
-//     timerMode++;
-//     switch (timerMode) {
-//         case 1:
-//             startInspectionTimer();
-//             break;
-//         case 2:
-//             stopInspectionTimer();
-//             start();
-//             break;
-//         case 3:
-//             stop();
-//             addTime(time, isPlus2, isDNF, scramble);
-//             generateScramble();
-//             timerMode = 0;
-//             break;
-//     }
-// }
-
 // Starts timer
 function start() {
     elapsedTime = 0;
@@ -98,8 +76,8 @@ function stop() {
     clearInterval(timer);
     elapsedTime = Date.now() - startTime;
     time = timerDisplay.textContent;
-    addTime(time, isPlus2, isDNF, scramble);
-    generateScramble();
+    isPlus2 = false;
+    isDNF = false;
 }
 
 // Starts inspection timer
@@ -153,6 +131,7 @@ function updateInspection() {
         console.log("+2");
     } else {
         timerDisplay.textContent = 'DNF';
+        isPlus2 = false;
         isDNF = true;
         console.log("DNF");
     }
@@ -160,12 +139,80 @@ function updateInspection() {
 
 // Adds solve to timeDisplay
 function addTime(time, isPlus2, isDNF, scramble) {
+    // Creates solve object
     let solve = new Solve(time, isPlus2, isDNF, scramble);
     console.log(solve.time);
-    let button = document.createElement("button");
-    times += solve;
-    button.innerText = solve.time;
-    timeDisplay.appendChild(button);
+    
+    // Buttons for each public attribute to the solve
+    const solveButtons = document.createElement("div");
+    solveButtons.id = "solveButtons";
+    const button = document.createElement("button");
+    button.className  = "button";
+    const plus2 = document.createElement("button");
+    plus2.className = "plus2";
+    plus2.id = times.length;
+    const dnf = document.createElement("button");
+    dnf.className = "dnf";
+    dnf.id = times.length;
+    
+    // Functionality for +2
+    plus2.addEventListener('click', () => {
+        let index = Number(plus2.id);
+        
+        if (!times[index].isDNF) {
+            times[index].isPlus2 = !times[index].isPlus2;
+
+            if (times[index].isPlus2) {
+                times[index].time = Math.round(((Number)(times[index].time) + 2) * 100) / 100;
+                plus2.style.color = "rgb(250, 128, 114)";
+                button.textContent = '+' + times[index].time;
+            } else {
+                times[index].time = Math.round(((Number)(times[index].time) - 2) * 100) / 100;
+                plus2.style.color = "white";
+                button.textContent = times[index].time;
+            }
+            return button, times;
+        }
+    });
+    // Functionality for DNF
+    dnf.addEventListener('click', () => {
+        let index = Number(dnf.id);
+        times[index].isDNF = !times[index].isDNF;
+
+        console.log(times[index].isDNF);
+        if (times[index].isDNF) {
+            button.textContent = 'DNF';
+            dnf.style.color = "rgb(250, 128, 114)";
+            return button, times;
+        } else {
+            button.textContent = solve.time;
+            dnf.style.color = "white";
+            return button, times;
+        }
+    });
+    
+    times.push(solve);
+    if (times[times.length - 1].isDNF) {
+        button.textContent = 'DNF';
+        dnf.style.color = "rgb(250, 128, 114)";
+    } else if (times[times.length - 1].isPlus2) {
+        times[index].time = Math.round(((Number)(times[index].time) + 2) * 100) / 100;
+        plus2.style.color = "rgb(250, 128, 114)";
+        button.textContent = '+' + times[index].time;
+    } else {
+        button.textContent = solve.time;
+    }
+    
+    // Adds buttons to html
+    solveButtons.appendChild(button);
+    solveButtons.appendChild(plus2);
+    plus2.innerText = "+2";
+    // Functionally
+    solveButtons.appendChild(dnf);
+    dnf.innerText = "DNF";
+    timeDisplay.appendChild(solveButtons);
+
+    return times;
 }
 
 // Generates a new 20 move scramble
@@ -187,24 +234,26 @@ function generateScramble() {
     scrambleDisplay.textContent = scramble;
 }
 
-// Keybinds
-// document.addEventListener('keydown', (event) => {
-//     if(event.key == ' ') {
-//         toggleTimer();
-//     }
-// })
-
 // When key is down...
 document.addEventListener('keydown', (event) => {
     if(event.key == ' ') {
         if (isInspecting && !isSolving) { // starts to track time the start timer is held
             holdTimer = true;
-            console.log("on");
         } else if (!isInspecting && isSolving) { // stops timer
             stop();
+            addTime(time, isPlus2, isDNF, scramble);
+            generateScramble();
             isSolving = false;
             timeSinceStop = 0;
         }
+    }
+
+    if (event.key == 'Escape') {
+        stopInspectionTimer();
+        isInspecting = false;
+        stop();
+        isSolving = false;
+        timerDisplay.textContent = "0.00";
     }
 })
 
@@ -215,7 +264,6 @@ document.addEventListener('keyup', (event) => {
             isInspecting = true;
         } else if (isInspecting && !isSolving) { // starts solve if held start timer for long enough
             holdTimer = false;
-            console.log("off");
             if (timeHeld > 0) {
                 console.log("exceded");
                 stopInspectionTimer();

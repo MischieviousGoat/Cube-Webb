@@ -1,9 +1,10 @@
 body {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: column;
-    align-items: space-around;
+    align-content: space-around;
     background-color: rgb(15, 20, 35);
+    height: 98vh;
 }
 
 #container {
@@ -12,12 +13,11 @@ body {
     align-items: center;
     justify-content: center;
     background-color: rgb(15, 20, 35);
-    height: 55vh;
-    width: 95vi;
+    height: fit-content;
 }
 
 #timerDisplay {
-    font-size: 5rem;
+    font-size: 6rem;
     font-family: monospace;
     font-weight: bold;
     color:white;
@@ -25,36 +25,55 @@ body {
 }
 
 #scrambleDisplay {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-family: monospace;
     font-weight: bold;
     color:white;
     margin-bottom: 25px;
 }
 
-#times {
-    width:  480px;
-    height: 360px;
-    overflow-y:scroll;
-    padding-top:5px;
-    padding-left: 20px;
-    background-color: rgb(10, 15, 25);
+#tools {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-#times button {
+#tools .tool {
+    width: 100%;
+    height: 360px;
+    overflow-y: auto;
+    padding: 5px;
+    margin: 5px;
+    background-color: rgb(10, 15, 25);
+}
+.button {
+    width: 100%;
+}
+
+#solveButtons button {
     border: none;
     padding: 10px;
     font-size: 1rem;
     font-family: monospace;
     color:white;
     background-color: rgb(10, 15, 25);
-    width: 95%;
+    height: fit-content;
     text-align: left;
     align-content: center;
 }
 
-#times button:hover {
+#solveButtons button:hover {
     text-decoration: underline;
-    color: rgb(95, 255, 55);
     transition: 0.2s;
+}
+
+#solveButtons {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
 }
