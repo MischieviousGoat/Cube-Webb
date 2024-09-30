@@ -18,6 +18,7 @@ class Solve {
 const timerDisplay = document.getElementById('timerDisplay');
 const scrambleDisplay = document.getElementById('scrambleDisplay');
 const timeDisplay = document.getElementById('times');
+const statsDisplay = document.getElementById('stats');
 
 /*
 Timer Modes: 
@@ -145,7 +146,8 @@ function addTime(time, isPlus2, isDNF, scramble) {
     
     // Buttons for each public attribute to the solve
     const solveButtons = document.createElement("div");
-    solveButtons.id = "solveButtons";
+    solveButtons.className = "solveButtons";
+    solveButtons.id = times.length;
     const button = document.createElement("button");
     button.className  = "button";
     const plus2 = document.createElement("button");
@@ -154,6 +156,9 @@ function addTime(time, isPlus2, isDNF, scramble) {
     const dnf = document.createElement("button");
     dnf.className = "dnf";
     dnf.id = times.length;
+    const removeSolve = document.createElement("button");
+    removeSolve.className = "removeSolve";
+    removeSolve.id = times.length;
     
     // Functionality for +2
     plus2.addEventListener('click', () => {
@@ -190,7 +195,14 @@ function addTime(time, isPlus2, isDNF, scramble) {
             return button, times;
         }
     });
-    
+    // Functionality for removing a solve
+    removeSolve.addEventListener('click', () => {
+        let index = Number(removeSolve.id);
+        timeDisplay.removeChild(document.getElementById(index));
+        times.splice(index, 1);
+        return times;
+    });
+
     times.push(solve);
     if (times[times.length - 1].isDNF) {
         button.textContent = 'DNF';
@@ -207,12 +219,38 @@ function addTime(time, isPlus2, isDNF, scramble) {
     solveButtons.appendChild(button);
     solveButtons.appendChild(plus2);
     plus2.innerText = "+2";
-    // Functionally
     solveButtons.appendChild(dnf);
     dnf.innerText = "DNF";
+    solveButtons.appendChild(removeSolve);
+    removeSolve.innerText = "X";
     timeDisplay.appendChild(solveButtons);
 
     return times;
+}
+
+function average(num, avgDisplay) {
+    let total = [];
+    let sum = 0;
+    let max = 0;
+    let min = 1000000;
+    let iteration
+    for (let i = times.length - 1; i >= times.length - num; i--) {
+        total.push(times[i].time);
+        if (total[times[i].time] > max) {
+            max = total[times[i].time];
+        }
+        if (total[times[i].time] < min) {
+            min = total[times[i].time];
+        }
+    }
+
+    for (let i = 0; i < total.length; i++) {
+        if (total[i] != max || total[i] != min) {
+            sum += total[i];
+        }
+    }
+
+    avgDisplay.innerText = sum / num;
 }
 
 // Generates a new 20 move scramble

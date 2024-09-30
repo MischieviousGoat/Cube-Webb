@@ -51,7 +51,7 @@ body {
     width: 100%;
 }
 
-#solveButtons button {
+.solveButtons button {
     border: none;
     padding: 10px;
     font-size: 1rem;
@@ -63,12 +63,12 @@ body {
     align-content: center;
 }
 
-#solveButtons button:hover {
+.solveButtons button:hover {
     text-decoration: underline;
     transition: 0.2s;
 }
 
-#solveButtons {
+.solveButtons {
     width: 100%;
     height: fit-content;
     display: flex;
@@ -76,4 +76,24 @@ body {
     align-items: center;
     justify-content: space-around;
     margin-top: 10px;
+}
+
+#stats {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+#left, #right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    font-size: 1rem;
+    font-family: monospace;
+    color:white;
+    background-color: rgb(10, 20, 35);
+
 }
